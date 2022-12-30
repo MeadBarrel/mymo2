@@ -1,0 +1,244 @@
+# Anatomy ======================================================================
+- name: Anatomy
+  description: Your knowledge about the human body
+  is_primary: true
+  primary_attribute: !Intelligence
+
+- name: Damage Assessment
+  description: Makes you able to determine how much damage you inflict on your opponents. A higher skill level gives more accurate information.
+  parents: [[Anatomy, 50]]
+  primary_attribute: !Intelligence
+  
+# Athletics ====================================================================
+- name: Athletics
+  primary_attribute: !Dexterity
+
+- name: Breathing Technique
+  description: Increases the overall maximum movement speed. This training technique, developed by the Sidoians, increases natural aerobic capacity and cardiovascular strength. Higher skills increase overall non-combat movement speeds.
+  parents: [[Athletics, 0]]
+  primary_attribute: !Constitution
+  
+- name: Landing Technique
+  description: Specialized training in landing and recovering from high falls. These Alvarin techniques develop confidence, coordination and control as well as teach methods for spreading and absorbing impact. A higher skill slightly reduces fall damage.
+  parents: [[Breathing Technique, 0]]
+  primary_attribute: !Dexterity
+
+- name: Sprinting
+  description: This training enables control of the balance between adrenalin use, anaerobic respiration and muscular strength. A higher skill slightly reduces stamina drain while sprinting. And also allows for further training to wear heavier armor without getting encumbered.
+  is_primary: true
+  parents: [[Athletics, 0]]
+  primary_attribute: !Dexterity
+
+- name: Armor Training
+  description: Knowledge of how to properly put on and attach armor pieces for optimizing speed and movement ability, and training of body control and fighting ability when wearing armor. A higher skill increases the threshold for armor encumbrance, and slightly increases the maximum armor carrying ability.
+  is_primary: true
+  parents: [[Combat Manouvering, 50], [Sprinting, 50]]
+  primary_attribute: !Strength
+  secondary_attribute: !Dexterity
+
+- name: Heavy Armor Training
+  description: Knowledge of how to use heavy armor, and techniques for moving and fighting when wearing heavy equipment. A higher skill greatly increases the threshold for equipment encumbrance, and slightly increases the maximum equipment carrying ability.
+  is_primary: true
+  parents: [[Armor Training, 100]]
+  primary_attribute: !Strength
+  secondary_attribute: !Dexterity
+
+- name: Footspeed
+  description: Training to improve running technique and muscle control of the legs to maximize the force exerted by the leg on the ground. A higher skill increases sprinting speed.
+  parents: [[Sprinting, 0]]
+  primary_attribute: !Constitution
+
+# Balance ======================================================================
+- name: Balance
+  description: Increases the ability to maintain balance when performing feats of agility or resisting an impact. This training develops the sensory-motor skills used to maintain gravitational center. A higher skill slightly decreases knockback distance.
+  is_primary: true
+  primary_attribute: !Dexterity
+  secondary_attribute: !Constitution
+
+- name: Knockback Resistance
+  description: Aids in maintaining balance when resisting impacts. This training increases equilibrium, strength, and impact prediction. A higher skill slightly decreases knockback distance.
+  parents: [[Balance, 0]]
+  primary_attribute: !Dexterity
+  secondary_attribute: !Strength
+
+- name: Knockdown Resistance
+  description: Increases the ability to remain standing while enduring heavy impacts. This training increases kinesthetic? and impact prediction abilities. A higher skill increases the chance of avoiding a knock down.
+  parents: [[Balance, 50]]
+  primary_attribute: !Dexterity
+  secondary_attribute: !Constitution
+
+# Blocking =====================================================================
+- name: Blocking
+  description: +0-45% knockdown resistance when blocking
+  is_primary: true
+  primary_attribute: !Dexterity
+  secondary_attribute: !Strength
+
+- name: Blocking Endurance
+  description: -0-70% stamina drain when blocking
+  parents: [[Combat Manouvering, 20], [Blocking, 20]]
+  primary_attribute: !Constitution
+  secondary_attribute: !Strength
+
+- name: Unarmed Blocking
+  description: +0-30% more blocking power when unarmed
+  parents: [[Blocking, 0], [Brawling, 0]]
+  primary_attribute: !Constitution
+  secondary_attribute: !Dexterity
+
+# Combat Manouvering ===========================================================
+- name: Combat Manouvering
+  description: +0-10% stamina regain when walking in combat mode
+  is_primary: true
+  primary_attribute: !Dexterity
+
+- name: Combat Balance
+  description: +5% knockback resistance when in combat mode
+  parents: [[Combat Manouvering, 25]]
+  primary_attribute: !Dexterity
+
+- name: Combat Movement
+  description: +0-20% stamina regain when walking in combat mode
+  parents: [[Combat Manouvering, 0]]
+  primary_attribute: !Constitution
+
+- name: Feint
+  description: -0-10%stamina drain when swinging weapon
+  parents: [[Combat Manouvering, 50]]
+  primary_attribute: !Dexterity
+
+- name: Momentum
+  description: +0-10% more walk speed in combatmode
+  parents: [[Combat Manouvering, 30]]
+  primary_attribute: !Dexterity
+
+# Combat Techniques ============================================================
+- name: Combat Techniques
+  description: Your knowledge about combat techniques
+  primary_attribute: !Dexterity
+
+- name: Aggressive Stance
+  description: +0-3 more and +0-5% extra melee damage.
+  is_primary: true
+  parents: [[Combat Techniques, 30]]
+  primary_attribute: !Strength
+
+- name: Defensive Stance
+  description: -0-3 dmg and -0-5% damage taken from melee/ranged
+  is_primary: true
+  parents: [[Combat Techniques, 0]]
+  primary_attribute: !Constitution
+
+- name: Unarmed Technique
+  description: + 5% of your Dexterity to brawling damage
+  is_primary: true
+  parents: [["Combat Techniques", 50], ["Brawling", 50]]
+  primary_attribute: !Dexterity
+
+# Domestication ================================================================
+- name: Domestication
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Animal Care
+  description: Your knowledge about your pets, this allows you to train your pets faster.
+  is_primary: true
+  parents: [[Domestication, 40]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Beast Influence
+  description: Improves your influence over pets. With higher level you can be further away from you pet without it losing aggro.
+  is_primary: true
+  parents: [[Domestication, 0]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Beast Mastery
+  description: Used in combination with the pets level to unlock pet attacks.
+  is_primary: true
+  parents: [[Domestication, 0]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Creature Control
+  description: Your ability to manipulate and command animals. A higher level let's you control more and stronger animals.
+  is_primary: true
+  parents: [[Domestication, 0]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Advanced Creature Control
+  description: This skill let's you control even more and stronger animals.
+  is_primary: true
+  parents: [[Creature Control, 40]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Herding
+  description: This skill reduces the pet point penalty of controlling multiple pets.
+  is_primary: true
+  parents: [[Creature Control, 0]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Taming
+  description: Use this skill to tame creatures. This skill increases the chance that you successfully tame a creature. Some creatures require a high skill level to be tamed. Some creatures can't be tamed and needs to be dominated in order for your to control them.
+  is_primary: true
+  parents: [[Domestication, 0]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Psyche
+
+- name: Veterinary  # todo: veterinary is under animal care now
+  description: Your knowledge about healing your pets
+  is_primary: true
+  parents: [[Domestication, 40]]
+  primary_attribute: !Intelligence
+  secondary_attribute: !Dexterity
+
+# Endurance ====================================================================
+- name: Endurance
+  description: Increases ability of the body to withstand prolonged exertion. A higher skill gives a small bonus to stamina.
+  is_primary: true
+  primary_attribute: !Constitution
+  secondary_attribute: !Strength
+
+- name: Active Regeneration
+  description: Techniques that grant self-healing through meditation. Teaches control of heart rate, respiration, blood pressure, metabolism and cellular replication to enhance natural healing processes. A higher skill greatly increases the amount of health restored while resting, and shortens the duration of food poisoning.
+  is_primary: true
+  parents: [[Endurance, 0], [Resting, 30]]
+
+- name: Passive Regeneration
+  parents: [[Endurance, 50]]
+
+- name: Resistance Swimming
+  description: Specialized training in swimming in strong currents or with heavy equipment. Pearl divers and spear fishers often train this ability with the help of a harness or tether. A higher skill significantly decreases the buoyancy penalty for swimming with weight and reduces stamina cost by 0-75% while swimming.
+  parents: [[Endurance, 0], [Swimming, 40]]
+  primary_attribute: !Constitution
+  secondary_attribute: !Strength
+
+- name: Subsisting
+  description: The ability to quickly regain strength and focus after losing consciousness. Teaches techniques to quickly recover control of mental and physical abilities after becoming incapacitated. A higher skill increases health restoration and shortens the recuperation time when recovering from mercy mode.
+  parents: [[Endurance, 50]]
+  primary_attribute: !Constitution
+  secondary_attribute: !Psyche
+
+# Gathering ====================================================================
+- name: Gathering
+  description: +0-50% more resources when gathering
+  primary_attribute: !Strength
+  secondary_attribute: !Constitution
+
+- name: Mining
+  description: Use this skill to mine ore and stone. This skill increases the amount of resources you get from mining
+  parents: [[Gathering, 0]]
+  primary_attribute: !Strength
+  secondary_attribute: !Constitution
+
+- name: Woodcutting
+  description: Use this skill to gather wood from trees. This skill increases the amount of resources you get from woodcutting
+  parents: [[Gathering, 0]]
+  primary_attribute: !Strength
+  secondary_attribute: !Constitution
+
+# Magic Schools ================================================================
