@@ -3,8 +3,9 @@ pub mod error;
 
 pub use indexmap;
 pub use enum_map;
+pub use strum;
 
-use model::skill::Skill;
+use model::Skill;
 
 pub fn load_skills(path: &str) -> Result<indexmap::IndexMap<String, Skill>, error::Error> {
     let file = std::fs::File::open(path)

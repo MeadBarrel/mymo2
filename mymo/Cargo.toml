@@ -11,4 +11,5 @@ indexmap = { version = "1.9.2", features = ["serde", "serde-1"] }
 lazy_static = "1.4.0"
 serde = { version = "1.0.152", features = ["derive"] }
 serde_yaml = "0.9.16"
+strum = { version = "0.24.1", features = ["derive"] }
 thiserror = "1.0.38"
