@@ -7,7 +7,9 @@ edition = "2021"
 
 [dependencies]
 eframe = { version = "0.20.1", features = ["persistence"] }
+image = "0.24.5"
 mymo = { version = "0.1.0", path = "mymo" }
+thiserror = "1.0.38"
 uuid = { version = "1.2.2", features = ["v4"] }
 
 [workspace]

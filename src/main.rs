@@ -1,6 +1,8 @@
 mod id;
 mod app;
 mod components;
+mod error;
+mod widgets;
 
 pub fn main() {
     let native_options = eframe::NativeOptions::default();

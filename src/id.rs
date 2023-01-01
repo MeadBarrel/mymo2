@@ -1,13 +1,14 @@
 use uuid::Uuid;
 use eframe::egui::Id;
 
+#[derive(Debug, Hash)]
 pub struct SuffixedId {
     uuid: Uuid,
     suffix: String,
 }
 
 impl SuffixedId {
-    fn derive(&self, suffix: &str) -> Self {
+    pub fn derive(&self, suffix: &str) -> Self {
         let mut new_suffix = self.suffix.clone();
         new_suffix.push_str(suffix);
         Self {
@@ -16,8 +17,8 @@ impl SuffixedId {
         }
     }
 
-    fn id(&self) -> Id {
-        Id::new((self.uuid, &self.suffix))
+    pub fn id(&self) -> Id {
+        Id::new(self)
     }
 }
 

@@ -45,6 +45,9 @@ pub enum Parent {
 }
 
 impl Race {
+
+    /// Return attribute cap modifier for this race, assuming Tindremen to be
+    /// the default
     pub fn attribute_cap(&self, attribute: Attribute) -> i8 {
         use Race::*;
         use Attribute::*;
@@ -120,6 +123,8 @@ impl Race {
         }
     }
 
+    /// Return minimum height modifier for this race, assuming tindremene to be
+    /// the default
     pub fn min_height(&self) -> i8 {
         use Race::*;
         match self {
@@ -139,6 +144,8 @@ impl Race {
         }
     }
 
+    /// Return maximum height modifier for this race, assuming tindremene to be
+    /// the default
     pub fn max_height(&self) -> i8 {
         use Race::*;
         match self {
@@ -178,7 +185,9 @@ impl Race {
     }
 }
 
-pub fn available_parents(clade: Clade, parent: Parent) -> Vec<Race> {
+
+/// Return available parent races for this clade at parent index
+pub fn avail_parents(clade: Clade, parent: Parent) -> Vec<Race> {
     use Race::*;
     match clade {
         Clade::Human => vec! [
