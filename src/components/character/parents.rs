@@ -6,7 +6,6 @@ use super::raceselect::RaceSelectButton;
 
 #[derive(Debug)]
 pub(super) struct ParentsEditor {
-    id: SuffixedId,
     parent_buttons: Vec<RaceSelectButton>,    
 }
 
@@ -16,7 +15,6 @@ impl ParentsEditor {
             RaceSelectButton::new(id.derive(&format!("select_parent_{i}")), parent)
         }).collect();
         Self {
-            id,
             parent_buttons,
         }
     }
