@@ -1,12 +1,15 @@
 mod raceselect;
 mod attribute;
 mod parents;
+mod cladeeditor;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
 use mymo::strum::IntoEnumIterator;
 use mymo::model::Parent;
 use crate::id::SuffixedId;
+
+use self::cladeeditor::CladeEditor;
 
 use super::PropComponent;
 use crate::containers::frame;
@@ -15,12 +18,14 @@ use eframe::egui::{Ui, ScrollArea, SidePanel, CentralPanel};
 #[derive(Debug)]
 pub struct CharacterEditor {
     id: SuffixedId,
+    clade_editor: cladeeditor::CladeEditor,
     parents_editor: parents::ParentsEditor,
 }
 
 impl CharacterEditor {
     pub fn new(id: SuffixedId) -> Self {
         Self {
+            clade_editor: CladeEditor,
             parents_editor: parents::ParentsEditor::new(id.derive("parents_editor")),
             id,
         }
@@ -40,6 +45,9 @@ impl PropComponent for CharacterEditor {
                 .show_inside(ui, |ui| {
                     ui.vertical(|ui| {
                         ui.add_space(5.);
+                        frame(ui, |ui| {
+                            self.clade_editor.add(ui, item)
+                        });
                         frame(ui, |ui| {
                             self.parents_editor.add(ui, item)
                         })

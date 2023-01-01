@@ -1,11 +1,18 @@
-use std::vec;
+use std::{vec, collections::VecDeque, default};
 use serde::{Serialize, Deserialize};
-use enum_map::Enum;
+use enum_map::{Enum, EnumMap};
 use strum::EnumIter;
 
 use super::attribute::Attribute;
 
-#[derive(Debug, Clone, Copy, EnumIter, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, EnumIter, PartialEq, Eq, Serialize, Deserialize, Default)] 
+pub enum Sex {
+    #[default]
+    Male,
+    Female
+}
+
+#[derive(Debug, Clone, Copy, EnumIter, Default, Serialize, Deserialize, PartialEq, Eq)]
 pub enum Clade {
     #[default]
     Human,
@@ -42,6 +49,46 @@ pub enum Parent {
     Second,
     Third,
     Fourth,
+}
+
+impl Sex {
+    pub fn name(self) -> String {
+        match self {
+            Sex::Male => "Male",
+            Sex::Female => "Female"
+        }.to_string()
+    }
+}
+
+impl Clade {
+    pub fn name(self) -> String {
+        use Clade::*;
+        match self {
+            Human => "Human",
+            Alvarin => "Alvarin",
+            Oghmir => "Oghmir",
+            Thursar => "Thursar",
+        }.to_string()
+    }
+
+    pub fn default_parents(self) -> EnumMap<Parent, Race> {
+        use Race::*;
+        use Parent::*;
+
+        match self {
+            Clade::Human => vec![
+                (First, Tindremen), (Second, Tindremen), (Third, Tindremen), (Fourth, Tindremen)]
+                .into_iter().collect(),
+            Clade::Alvarin => vec![(First, Veela), (Second, Veela), (Third, Veela), (Fourth, Veela)]
+                .into_iter().collect(),
+            Clade::Oghmir => vec![
+                (First, Blainn), (Second, Blainn), (Third, Blainn), (Fourth, Blainn)]
+                .into_iter().collect(),
+            Clade::Thursar => vec![
+                (First, Thursar), (Second, Thursar), (Third, Tindremen), (Fourth, Tindremen)]
+                .into_iter().collect()
+        }
+    }
 }
 
 impl Race {

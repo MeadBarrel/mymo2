@@ -26,9 +26,9 @@ impl eframe::App for App {
         style.text_styles = [
             (Heading, FontId::new(24.0, Proportional)),
             (Body, FontId::new(18.0, Proportional)),
-            (Monospace, FontId::new(14.0, Proportional)),
-            (Button, FontId::new(14.0, Proportional)),
-            (Small, FontId::new(12.0, Proportional)),
+            (Monospace, FontId::new(18.0, Proportional)),
+            (Button, FontId::new(18.0, Proportional)),
+            (Small, FontId::new(14.0, Proportional)),
         ].into();
 
         ctx.set_style(style);

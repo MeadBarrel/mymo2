@@ -1,10 +1,11 @@
 use enum_map::EnumMap;
-use super::{attribute::Attribute, Race, Parent, Clade};
+use super::{attribute::Attribute, Race, Parent, Clade, Sex};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Character {
     pub clade: Clade,
+    pub sex: Sex,
     pub parents: EnumMap<Parent, Race>,
     pub attributes: EnumMap<Attribute, u32>,
 }
