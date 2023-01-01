@@ -1,26 +1,24 @@
-use eframe::egui::{TextureHandle, Widget, Response};
+use eframe::egui::{Widget, Response};
 use mymo::model::Race;
-use std::collections::HashMap;
 
 use super::*;
 
-pub struct RaceButton<'a> {
-    images: &'a HashMap<String, TextureHandle>,
+pub struct RaceButton {
     race: Race,
 }
 
-impl<'a> RaceButton<'a> {
-    pub fn new(images: &'a HashMap<String, TextureHandle>, race: Race) -> Self {
+impl RaceButton {
+    pub fn new(race: Race) -> Self {
         Self {
-            images, race
+            race
         }
     }
 }
 
-impl<'a> Widget for RaceButton<'a> {
+impl Widget for RaceButton {
     fn ui(self, ui: &mut eframe::egui::Ui) -> Response {
         let image_name = race_image_name(self.race);
-        ui.simple_image_button(self.images, &image_name)
+        ui.simple_image_button(&image_name)
     }
 }
 

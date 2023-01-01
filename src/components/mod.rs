@@ -6,18 +6,15 @@ pub use character::CharacterEditor;
 
 use eframe::egui::Ui;
 
-pub trait AppComponent {
-    type Context;
-
+pub trait Component {
     #[allow(unused)]
-    fn add(&mut self, ctx: &mut Self::Context, ui: &mut Ui);
+    fn add(&mut self, ui: &mut Ui);
 }
 
 pub trait PropComponent {
-    type Context;
     type Item;
 
     #[allow(unused)]
-    fn add(&mut self, ctx: &mut Self::Context, ui: &mut Ui, item: &mut Self::Item);
+    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item);
 
 }

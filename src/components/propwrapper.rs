@@ -1,32 +1,29 @@
-use std::{rc::Rc, marker::PhantomData};
+use std::rc::Rc;
 use std::cell::Cell;
-use super::{AppComponent, PropComponent};
+use super::{Component, PropComponent};
 
-pub struct PropWrapper<T, C, A> 
+pub struct PropWrapper<T, C> 
 {
     component: C,
     value: Rc<Cell<T>>,
-    _context: PhantomData<A>
 }
 
-impl<T, C, A> PropWrapper<T, C, A> {
+impl<T, C> PropWrapper<T, C> {
     pub fn new(component: C, value: Rc<Cell<T>>) -> Self {
         Self {
-            component, value, _context: PhantomData
+            component, value
         }
     }
 }
 
-impl<T, C, A> AppComponent for PropWrapper<T, C, A> 
+impl<T, C> Component for PropWrapper<T, C> 
     where
         T: Default,
-        C: PropComponent<Item = T, Context = A>,
+        C: PropComponent<Item = T>,
 {
-    type Context = A;
-
-    fn add(&mut self, ctx: &mut Self::Context, ui: &mut eframe::egui::Ui) {
+    fn add(&mut self, ui: &mut eframe::egui::Ui) {
         let mut item = self.value.take();
-        self.component.add(ctx, ui, &mut item);
+        self.component.add(ui, &mut item);
         self.value.set(item);
     }
 }

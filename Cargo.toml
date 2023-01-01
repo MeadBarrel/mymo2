@@ -7,8 +7,11 @@ edition = "2021"
 
 [dependencies]
 eframe = { version = "0.20.1", features = ["persistence"] }
+egui_extras = { version = "0.20.0", features = ["image"] }
+error-stack = "0.2.4"
 image = "0.24.5"
 mymo = { version = "0.1.0", path = "mymo" }
+state = "0.5.3"
 thiserror = "1.0.38"
 uuid = { version = "1.2.2", features = ["v4"] }
 

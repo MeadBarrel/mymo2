@@ -11,7 +11,7 @@ use mymo::strum::IntoEnumIterator;
 use mymo::model::Parent;
 use crate::app::App;
 use crate::id::SuffixedId;
-use super::AppComponent;
+use super::Component;
 use super::PropComponent;
 use eframe::{egui::
     {self, Layout, Ui, InnerResponse}, 
@@ -40,10 +40,9 @@ impl CharacterEditor {
 }
 
 impl PropComponent for CharacterEditor {
-    type Context = App;
     type Item = Character;
 
-    fn add(&mut self, ctx: &mut Self::Context, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
+    fn add(&mut self, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
         let side_panel_width = ui.available_width() * 0.35;
         egui::ScrollArea::new([false, true]).show(ui, |ui| {
             egui::SidePanel::left(self.id.derive("side_panel"))
@@ -59,7 +58,7 @@ impl PropComponent for CharacterEditor {
                                     ui.heading("Race:");
                                     self.parent_buttons.iter_mut().for_each(|parent_button| {
                                         ui.add_space(10.);
-                                        parent_button.add(ctx, ui, item)
+                                        parent_button.add(ui, item)
                                     });
                                 })
     
@@ -147,10 +146,9 @@ impl RaceSelectButton {
 }
 
 impl PropComponent for RaceSelectButton {
-    type Context = App;
     type Item = Character;
 
-    fn add(&mut self, ctx: &mut Self::Context, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
         use mymo::model::avail_parents;
         use crate::widgets::RaceButton;
 
@@ -158,7 +156,7 @@ impl PropComponent for RaceSelectButton {
 
 
         let response = ui.add(
-            RaceButton::new(&ctx.images, item.parents[self.parent])
+            RaceButton::new(item.parents[self.parent])
         );
 
         if response.clicked() {
@@ -170,7 +168,7 @@ impl PropComponent for RaceSelectButton {
         egui::popup_below_widget(ui, popup_id, &response, |ui| {
             for race in available_races {
                 let response = ui.add(
-                    RaceButton::new(&ctx.images, race)
+                    RaceButton::new(race)
                 );
                 if response.clicked() {
                     item.parents[self.parent] = race;
