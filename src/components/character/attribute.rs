@@ -1,7 +1,9 @@
 use mymo::model::{Character, Attribute};
-use eframe::egui::Ui;
+use eframe::{egui::Ui, epaint::Color32};
 use crate::components::PropComponent;
 use super::slider::SliderFrame;
+use crate::containers::mymo_frame_defaults;
+use crate::storage::COLORS;
 
 pub(super) struct AttributeFrame {
     attribute: Attribute,
@@ -17,14 +19,42 @@ impl PropComponent for AttributeFrame {
     type Item = Character;
 
     fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
+        let modifier = item.attribute_modifier(self.attribute);
+        let raw_attribute = item.attributes[self.attribute];
+        let attribute_min = item.attribute_min(self.attribute);
+        let mut frame = mymo_frame_defaults();
+
         let attribute_cap = item.attribute_cap(self.attribute);
-        let mut slider_frame = SliderFrame::new()
+        let slider_frame = SliderFrame::new()
             .label(self.attribute.name())
-            .value_fmt( item.attributes[self.attribute].to_string() )
-            .sub_string(format!("10-{}", attribute_cap))
-            .min(10)
+            .value_fmt(
+                format!(
+                    "{} ({})",
+                    item.attribute(self.attribute),
+                    if modifier > 0 { format!("+{}", modifier) }
+                    else { modifier.to_string() },
+                )
+            )
+            .sub_string(format!("{}-{}", attribute_min, attribute_cap))
+            .min(attribute_min)
             .max(140);
 
-        slider_frame.add(ui, &mut item.attributes[self.attribute]);     
+        if item.attributes[self.attribute] > attribute_cap {
+            frame = frame.fill(COLORS.get().frame_color_impossible)
+        }
+
+        if modifier < 0 
+            && raw_attribute + modifier < attribute_min + 1 
+            && raw_attribute > attribute_min 
+        {
+            frame = frame.fill(COLORS.get().frame_color_ineffective)
+        }
+
+        frame.show(ui, |ui| {
+            slider_frame
+                .show_value(true)
+                .add(ui, &mut item.attributes[self.attribute]);     
+        });
+        
     }
 }

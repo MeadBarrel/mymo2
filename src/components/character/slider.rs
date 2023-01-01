@@ -20,6 +20,7 @@ pub struct SliderFrame<Num> {
     min: Num,
     max: Num,
     step: Option<Num>,
+    show_value: bool,
     
 }
 
@@ -35,6 +36,7 @@ impl<Num> SliderFrame<Num>
             min: Num::MIN,
             max: Num::MAX,
             step: None,
+            show_value: false,
         }
     }
 
@@ -67,6 +69,11 @@ impl<Num> SliderFrame<Num>
         self.step = Some(step);
         self
     }
+
+    pub fn show_value(mut self, show_value: bool) -> Self {
+        self.show_value = show_value;
+        self
+    }
 }
 
 impl<Num> PropComponent for SliderFrame<Num> 
@@ -76,32 +83,31 @@ impl<Num> PropComponent for SliderFrame<Num>
     type Item = Num;
 
     fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
-        frame(ui, |ui| {
-            ui.vertical(|ui| {
-                ui.set_width(ui.available_width());
-            
-                ui.horizontal(|ui| {
-                    if let Some(label) = &self.label {
-                        ui.vertical(|ui| {
-                            ui.add_space(5.);
-                            ui.heading(label.as_str());
-                        });
-                    };
-                    ui.with_layout(Layout::top_down(Align::Max), |ui| {
-                        if let Some(value_fmt) = &self.value_fmt {
-                            ui.label(value_fmt);
-                        }
-                        if let Some(sub_string) = &self.sub_string {
-                            ui.label(sub_string);
-                        }
-                    });               
-                });
-                ui.add_space(5.);
-                ui.add(
-                    Slider::new(item, self.min..=self.max)
-                        .show_value(false)
-                )
-            })
+        ui.vertical(|ui| {
+            ui.set_width(ui.available_width());
+        
+            ui.horizontal(|ui| {
+                if let Some(label) = &self.label {
+                    ui.vertical(|ui| {
+                        ui.add_space(5.);
+                        ui.heading(label.as_str());
+                    });
+                };
+                ui.with_layout(Layout::top_down(Align::Max), |ui| {
+                    if let Some(value_fmt) = &self.value_fmt {
+                        ui.label(value_fmt);
+                    }
+                    if let Some(sub_string) = &self.sub_string {
+                        ui.label(sub_string);
+                    }
+                });               
+            });
+            ui.add_space(5.);
+            ui.spacing_mut().slider_width = ui.available_width() * 0.9;
+            ui.add(
+                Slider::new(item, self.min..=self.max)
+                    .show_value(self.show_value)
+            )
         });
     }
 }

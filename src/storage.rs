@@ -1,9 +1,27 @@
 use std::{collections::HashMap, fs::DirEntry, io::Read, path::PathBuf};
+use eframe::epaint::Color32;
 use state::Storage;
 use egui_extras::RetainedImage;
 use error_stack::{ResultExt, Result, IntoReport};
 
+pub struct Colors {
+    pub frame_color_std: Color32,
+    pub frame_color_impossible: Color32,
+    pub frame_color_ineffective: Color32,
+}
+
 pub static IMAGES: Storage<HashMap<String, RetainedImage>> = Storage::new();
+pub static COLORS: Storage<Colors> = Storage::new();
+
+impl Default for Colors {
+    fn default() -> Self {
+        Self {
+            frame_color_std: Color32::from_additive_luminance(25),
+            frame_color_impossible: Color32::from_rgb_additive(80, 0, 0),
+            frame_color_ineffective: Color32::from_rgb_additive(80, 80, 0)
+        }
+    }
+}
 
 #[derive(Clone, Copy, Debug, thiserror::Error)]
 #[error("Failed to load images")]

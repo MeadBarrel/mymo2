@@ -17,6 +17,7 @@ pub fn main() -> Result<(), StartupError> {
     let images = storage::load_images("./resources").change_context(StartupError)?;
 
     storage::IMAGES.set(images);
+    storage::COLORS.set(storage::Colors::default());
 
     eframe::run_native("Alrust", native_options, Box::new(|cc| Box::new(app::App::new(cc))));
 

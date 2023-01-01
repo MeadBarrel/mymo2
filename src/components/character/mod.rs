@@ -3,6 +3,8 @@ mod attribute;
 mod parents;
 mod cladeeditor;
 mod slider;
+mod heightslider;
+mod weightslider;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
@@ -51,7 +53,13 @@ impl PropComponent for CharacterEditor {
                         });
                         frame(ui, |ui| {
                             self.parents_editor.add(ui, item)
-                        })
+                        });
+                        frame(ui, |ui| {
+                            heightslider::HeightSlider.add(ui, item)
+                        });
+                        frame(ui, |ui| {
+                            weightslider::WeightSlider.add(ui, item)
+                        });
                     });
                 });
 
@@ -67,8 +75,7 @@ impl PropComponent for CharacterEditor {
             
             CentralPanel::default()
                 .show_inside(ui, |ui| {
-                    ui.scope(|ui| {
-                        ui.spacing_mut().slider_width = ui.available_width() * 0.9;
+                    ui.scope(|ui| {                        
                         Attribute::iter().for_each(|attribute| {
                             attribute::AttributeFrame::new(attribute).add(ui, item)
                         })    
