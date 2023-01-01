@@ -24,11 +24,11 @@ impl<'a> Widget for SimpleImageButton<'a> {
 }
 
 pub trait WithSimpleImageButton {
-    fn simple_image_button<'a>(&mut self, name: &'a str) -> Response;
+    fn simple_image_button(&mut self, name: &str) -> Response;
 }
 
 impl WithSimpleImageButton for Ui {
-    fn simple_image_button<'a>(&mut self, name: &'a str) -> Response {
+    fn simple_image_button(&mut self, name: &str) -> Response {
         self.add(
             SimpleImageButton::new(name)
         )

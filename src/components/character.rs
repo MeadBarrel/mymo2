@@ -1,17 +1,9 @@
-use eframe::egui::ImageButton;
-use eframe::egui::Widget;
-use eframe::egui::style::Spacing;
-use eframe::epaint::TextureHandle;
-use mymo::model::Clade;
 use crate::widgets::RaceButton;
 use mymo::model::Character;
 use mymo::model::Attribute;
-use mymo::model::Race;
 use mymo::strum::IntoEnumIterator;
 use mymo::model::Parent;
-use crate::app::App;
 use crate::id::SuffixedId;
-use super::Component;
 use super::PropComponent;
 use eframe::{egui::
     {self, Layout, Ui, InnerResponse}, 
@@ -22,7 +14,6 @@ use eframe::{egui::
 #[derive(Debug)]
 pub struct CharacterEditor {
     id: SuffixedId,
-    selecting: bool,
     parent_buttons: Vec<RaceSelectButton>,
 }
 
@@ -33,7 +24,6 @@ impl CharacterEditor {
         }).collect();
         Self {
             id,
-            selecting: false,
             parent_buttons,
         }
     }
@@ -150,7 +140,6 @@ impl PropComponent for RaceSelectButton {
 
     fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
         use mymo::model::avail_parents;
-        use crate::widgets::RaceButton;
 
         let popup_id = self.id.derive("_popup").id();
 

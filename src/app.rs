@@ -11,7 +11,7 @@ pub struct App {
 }
 
 impl App {
-    pub fn new(ctx: &eframe::CreationContext<'_>) -> Self {
+    pub fn new(_: &eframe::CreationContext<'_>) -> Self {
         Default::default()
     }
 }
