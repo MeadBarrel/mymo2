@@ -95,6 +95,16 @@ impl Character {
         10
     }
 
+    /// Get minimal possible height for this character
+    pub fn min_height(&self) -> i32 {
+        168 + self.parents.values().map(|race| race.min_height()).sum::<i32>()
+    }
+
+    /// Get maximum possible height for this character
+    pub fn max_height(&self) -> i32 {
+        201 + self.parents.values().map(|race| race.max_height()).sum::<i32>()
+    }
+
     /// Get total attribute modifier
     pub fn attribute_modifier(&self, attribute: Attribute) -> i32 {
         self.weight_class().attribute_modifier(attribute)

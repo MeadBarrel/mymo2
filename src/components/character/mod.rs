@@ -54,9 +54,7 @@ impl PropComponent for CharacterEditor {
                         frame(ui, |ui| {
                             self.parents_editor.add(ui, item)
                         });
-                        frame(ui, |ui| {
-                            heightslider::HeightSlider.add(ui, item)
-                        });
+                        heightslider::HeightSlider.add(ui, item);
                         frame(ui, |ui| {
                             weightslider::WeightSlider.add(ui, item)
                         });

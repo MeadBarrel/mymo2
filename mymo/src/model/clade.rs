@@ -172,7 +172,7 @@ impl Race {
 
     /// Return minimum height modifier for this race, assuming tindremene to be
     /// the default
-    pub fn min_height(&self) -> i8 {
+    pub fn min_height(&self) -> i32 {
         use Race::*;
         match self {
             Tindremen => 0,
@@ -193,7 +193,7 @@ impl Race {
 
     /// Return maximum height modifier for this race, assuming tindremene to be
     /// the default
-    pub fn max_height(&self) -> i8 {
+    pub fn max_height(&self) -> i32 {
         use Race::*;
         match self {
             Tindremen => 0,
