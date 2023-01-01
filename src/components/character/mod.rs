@@ -1,11 +1,13 @@
 mod raceselect;
 mod attribute;
+mod parents;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
 use mymo::strum::IntoEnumIterator;
 use mymo::model::Parent;
 use crate::id::SuffixedId;
+
 use super::PropComponent;
 use crate::containers::frame;
 use eframe::egui::{Ui, ScrollArea, SidePanel, CentralPanel};
@@ -13,17 +15,14 @@ use eframe::egui::{Ui, ScrollArea, SidePanel, CentralPanel};
 #[derive(Debug)]
 pub struct CharacterEditor {
     id: SuffixedId,
-    parent_buttons: Vec<raceselect::RaceSelectButton>,
+    parents_editor: parents::ParentsEditor,
 }
 
 impl CharacterEditor {
     pub fn new(id: SuffixedId) -> Self {
-        let parent_buttons = Parent::iter().enumerate().map(|(i, parent)| {
-            raceselect::RaceSelectButton::new(id.derive(&format!("select_parent_{i}")), parent)
-        }).collect();
         Self {
+            parents_editor: parents::ParentsEditor::new(id.derive("parents_editor")),
             id,
-            parent_buttons,
         }
     }
 }
@@ -42,17 +41,7 @@ impl PropComponent for CharacterEditor {
                     ui.vertical(|ui| {
                         ui.add_space(5.);
                         frame(ui, |ui| {
-                            ui.vertical(|ui| {
-                                ui.horizontal(|ui| {
-                                    ui.heading("Race:");
-                                    self.parent_buttons.iter_mut().for_each(|parent_button| {
-                                        ui.add_space(10.);
-                                        parent_button.add(ui, item)
-                                    });
-                                })
-    
-                            });
-                            
+                            self.parents_editor.add(ui, item)
                         })
                     });
                 });
