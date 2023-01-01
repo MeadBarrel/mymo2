@@ -2,6 +2,7 @@ mod raceselect;
 mod attribute;
 mod parents;
 mod cladeeditor;
+mod slider;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
