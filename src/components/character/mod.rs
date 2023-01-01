@@ -61,7 +61,7 @@ impl PropComponent for CharacterEditor {
                     ui.scope(|ui| {
                         ui.spacing_mut().slider_width = ui.available_width() * 0.9;
                         Attribute::iter().for_each(|attribute| {
-                            attribute::attribute_frame(ui, item, attribute)
+                            attribute::AttributeFrame::new(attribute).add(ui, item)
                         })    
                     })
                 });
