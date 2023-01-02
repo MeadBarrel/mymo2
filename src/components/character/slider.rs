@@ -1,17 +1,5 @@
-use std::marker::PhantomData;
-
 use eframe::egui::{Ui, emath::Numeric, Align, Layout, Slider};
-use mymo::model::Character;
-use super::box_container;
-
 use crate::components::PropComponent;
-
-#[derive(Debug, Clone, Copy)]
-pub enum SliderFrameColor {
-    Normal,
-    Ineffective,
-    Impossible,
-}
 
 pub struct SliderFrame<Num> {
     label: Option<String>,
@@ -19,7 +7,6 @@ pub struct SliderFrame<Num> {
     sub_string: Option<String>,
     min: Num,
     max: Num,
-    step: Option<Num>,
     show_value: bool,
     
 }
@@ -35,7 +22,6 @@ impl<Num> SliderFrame<Num>
             sub_string: None,
             min: Num::MIN,
             max: Num::MAX,
-            step: None,
             show_value: false,
         }
     }
@@ -65,11 +51,6 @@ impl<Num> SliderFrame<Num>
         self
     }
 
-    pub fn step(mut self, step: Num) -> Self {
-        self.step = Some(step);
-        self
-    }
-
     pub fn show_value(mut self, show_value: bool) -> Self {
         self.show_value = show_value;
         self
@@ -82,7 +63,7 @@ impl<Num> PropComponent for SliderFrame<Num>
 {
     type Item = Num;
 
-    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, _: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
         ui.vertical(|ui| {
             ui.set_width(ui.available_width());
         

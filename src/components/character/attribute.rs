@@ -1,5 +1,5 @@
 use mymo::model::{Character, Attribute};
-use eframe::{egui::Ui, epaint::Color32};
+use eframe::egui::Ui;
 use crate::components::PropComponent;
 use super::slider::SliderFrame;
 use crate::containers::mymo_frame_defaults;

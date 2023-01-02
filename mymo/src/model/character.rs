@@ -96,7 +96,7 @@ impl Character {
         result.max(0)
     }
 
-    pub fn attribute_min(&self, attribute: Attribute) -> i32 {
+    pub fn attribute_min(&self, _: Attribute) -> i32 {
         10
     }
 

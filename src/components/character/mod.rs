@@ -10,15 +10,15 @@ mod ageslider;
 use mymo::model::Character;
 use mymo::model::Attribute;
 use mymo::strum::IntoEnumIterator;
-use mymo::model::Parent;
 use crate::id::SuffixedId;
 
 use self::cladeeditor::CladeEditor;
 
 use super::PropComponent;
 use crate::containers::box_container;
-use eframe::egui::{Ui, ScrollArea, SidePanel, CentralPanel};
+use eframe::egui::{Ui, ScrollArea};
 
+#[allow(unused)]
 #[derive(Debug)]
 pub struct CharacterEditor {
     id: SuffixedId,
@@ -118,7 +118,7 @@ impl CharacterEditor {
         });
     }
 
-    fn right_panel(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Character) {
+    fn right_panel(&mut self, _: &mut eframe::Frame, _: &mut Ui, _: &mut Character) {
     }
 }
 
@@ -141,5 +141,5 @@ impl PropComponent for CharacterEditor {
 
 fn normalize_vec<const N: usize>(vec: &[f32; N]) -> Vec<f32> {
     let total: f32 = vec.iter().sum();
-    vec.into_iter().map(|x| x / total).collect()
+    vec.iter().map(|x| x / total).collect()
 }

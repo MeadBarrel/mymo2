@@ -1,6 +1,5 @@
 use mymo::{model::{Character, Clade, Sex}, strum::IntoEnumIterator};
 use eframe::egui;
-use mymo::strum::EnumIter;
 
 use crate::components::PropComponent;
 
@@ -10,7 +9,7 @@ pub struct CladeEditor;
 impl PropComponent for CladeEditor {
     type Item = Character;
 
-    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut egui::Ui, item: &mut Self::Item) {
+    fn add(&mut self, _: &mut eframe::Frame, ui: &mut egui::Ui, item: &mut Self::Item) {
         ui.horizontal(|ui| {
             ui.label("Clade: ");
             ui.menu_button(item.clade.name(), |ui| {

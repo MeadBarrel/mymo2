@@ -10,7 +10,7 @@ impl PropComponent for AgeSlider {
     type Item = Character;
 
     fn add(&mut self, frame: &mut eframe::Frame, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
-        let mut container = mymo_frame_defaults();
+        let container = mymo_frame_defaults();
         let min_age = item.min_age();
         let max_age = item.max_age();
 

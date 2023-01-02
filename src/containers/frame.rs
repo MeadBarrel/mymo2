@@ -1,4 +1,4 @@
-use eframe::{egui::{InnerResponse, Color32, Frame, Ui}, epaint::Shadow};
+use eframe::{egui::{InnerResponse, Frame, Ui}, epaint::Shadow};
 use crate::storage::COLORS;
 
 pub fn mymo_frame_defaults() -> Frame {
