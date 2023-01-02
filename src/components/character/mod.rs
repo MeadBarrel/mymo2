@@ -3,7 +3,7 @@ mod attribute;
 mod parents;
 mod clade;
 mod slider;
-mod heigh;
+mod height;
 mod weigh;
 mod age;
 
@@ -104,7 +104,7 @@ impl CharacterEditor {
             self.parents_editor.add(frame, ui, item)
         });
         age::AgeSlider.add(frame, ui, item);
-        heigh::HeightSlider.add(frame, ui, item);
+        height::HeightSlider.add(frame, ui, item);
         box_container(ui, |ui| {
             weigh::WeightSlider.add(frame, ui, item)
         });        
