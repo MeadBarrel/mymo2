@@ -5,6 +5,7 @@ mod cladeeditor;
 mod slider;
 mod heightslider;
 mod weightslider;
+mod ageslider;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
@@ -102,10 +103,11 @@ impl CharacterEditor {
         box_container(ui, |ui| {
             self.parents_editor.add(frame, ui, item)
         });
+        ageslider::AgeSlider.add(frame, ui, item);
         heightslider::HeightSlider.add(frame, ui, item);
         box_container(ui, |ui| {
             weightslider::WeightSlider.add(frame, ui, item)
-        });
+        });        
     }
 
     fn central_panel(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Character) {

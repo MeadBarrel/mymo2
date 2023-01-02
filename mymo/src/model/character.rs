@@ -8,6 +8,7 @@ pub struct Character {
     pub sex: Sex,
     pub weight_percent: i32,
     pub height: i32,
+    pub age: i32,
     pub parents: EnumMap<Parent, Race>,
     pub attributes: EnumMap<Attribute, i32>,
 }
@@ -19,6 +20,7 @@ impl Default for Character {
             sex: Default::default(),
             weight_percent: 50,
             height: 150,
+            age: 18,
             parents: Default::default(),
             attributes: Default::default(),
         }
@@ -86,8 +88,10 @@ impl Character {
     /// Get attribute cap modifier for this character at age 18, height 150cm, 
     /// 100% weight, assuming full tindremene to be the default.
     pub fn attribute_cap(&self, attribute: Attribute) -> i32 {
-        let result = attribute.default_cap() as i32 
-            + self.parents.values().map(|x| x.attribute_cap(attribute)).sum::<i8>() as i32;
+        let mut result = self.parents
+            .values()
+            .map(|x| x.attribute_cap(attribute) as f32 * 0.25).sum::<f32>() as i32;
+        result += super::age::attribute_mod(self, attribute, self.age);
         result.max(0)
     }
 
@@ -97,12 +101,28 @@ impl Character {
 
     /// Get minimal possible height for this character
     pub fn min_height(&self) -> i32 {
-        168 + self.parents.values().map(|race| race.min_height()).sum::<i32>()
+        let mut result = self.parents
+            .values()
+            .map(|race| race.min_height() as f32 * 0.25).sum::<f32>() as i32;
+        result += super::age::min_height_mod(self, self.age);
+        result
     }
 
     /// Get maximum possible height for this character
     pub fn max_height(&self) -> i32 {
-        201 + self.parents.values().map(|race| race.max_height()).sum::<i32>()
+        let mut result = self.parents
+            .values()
+            .map(|race| race.max_height() as f32 * 0.25).sum::<f32>() as i32;
+        result += super::age::max_height_mod(self, self.age);
+        result
+    }
+
+    pub fn min_age(&self) -> i32 {
+        18
+    }
+
+    pub fn max_age(&self) -> i32 {
+        80
     }
 
     /// Get total attribute modifier
@@ -254,6 +274,13 @@ pub mod tests {
     use super::*;
 
     use rstest::*;
+
+
+
+
+
+
+
 
     #[rstest]
     #[case(50, 150, 33)]

@@ -100,72 +100,79 @@ impl Race {
         use Attribute::*;
 
         match self {
-            Tindremen => 0,
+            Tindremen => match attribute {
+                Strength => 88,
+                Dexterity => 86,
+                Constitution => 82,
+                Intelligence => 99,
+                Psyche => 89
+            },
             Sidoian => match attribute {
-                Strength => 2,
-                Dexterity => -1,
-                Constitution => 2,
-                Intelligence => 1,
-                Psyche => -3,
+                Strength => 96,
+                Dexterity => 82,
+                Constitution => 90,
+                Intelligence => 103,
+                Psyche => 77,
             }
             Sarducaan => match attribute {
-                Strength => -2,
-                Dexterity => 0,
-                Constitution => 2,
-                Intelligence => -1,
-                Psyche => 3
+                Strength => 80,
+                Dexterity => 86,
+                Constitution => 90,
+                Intelligence => 95,
+                Psyche => 101
             },
             Khurite => match attribute {
-                Strength => 1,
-                Dexterity => 2,
-                Constitution =>  4,
-                Intelligence =>  -5,
-                Psyche => 1,
+                Strength => 92,
+                Dexterity => 94,
+                Constitution =>  98,
+                Intelligence =>  79,
+                Psyche => 93,
             },
             Kallard => match attribute {
-                Strength => 2,
-                Dexterity => -1,
-                Constitution =>  5,
-                Intelligence =>  -7,
-                Psyche => 1
+                Strength => 96,
+                Dexterity => 82,
+                Constitution => 102,
+                Intelligence => 71,
+                Psyche => 93
             },            
 
             Veela => match attribute {
-                Strength => -3,
-                Dexterity => 5,
-                Constitution =>  1,
-                Intelligence =>  -2,
-                Psyche => 3,
+                Strength => 76,
+                Dexterity => 106,
+                Constitution =>  86,
+                Intelligence =>  91,
+                Psyche => 101,
             },
             Sheevra => match attribute {
-                Strength => -4,
-                Dexterity => 4,
-                Constitution =>  1,
-                Intelligence =>  0,
-                Psyche => 4,                
+                Strength => 72,
+                Dexterity => 102,
+                Constitution => 86,
+                Intelligence => 99,
+                Psyche => 105,                
             },
 
             Blainn => match attribute {
-                Strength => 4,
-                Dexterity => -2,
-                Constitution =>  9,
-                Intelligence =>  1,
-                Psyche => -1,
+                Strength => 104,
+                Dexterity => 78,
+                Constitution => 118,
+                Intelligence => 103,
+                Psyche => 85,
             },
+
             Huergar => match attribute {
-                Strength => 4,
-                Dexterity => -2,
-                Constitution =>  7,
-                Intelligence =>  2,
-                Psyche => 0
+                Strength => 104,
+                Dexterity => 78,
+                Constitution =>  110,
+                Intelligence =>  107,
+                Psyche => 89
             },
 
             Thursar => match attribute {
-                Strength => 5,
-                Dexterity => -1,
-                Constitution =>  6,
-                Intelligence =>  -6,
-                Psyche => -10,
+                Strength => 108,
+                Dexterity => 82,
+                Constitution => 106,
+                Intelligence => 71,
+                Psyche => 49,
             },            
         }
     }
@@ -175,19 +182,19 @@ impl Race {
     pub fn min_height(&self) -> i32 {
         use Race::*;
         match self {
-            Tindremen => 0,
-            Sidoian => 0,
-            Sarducaan => -1,
-            Khurite => -1,
-            Kallard => 2,
+            Tindremen => 166,
+            Sidoian => 166,
+            Sarducaan => 162,
+            Khurite => 162,
+            Kallard => 174,
 
-            Veela => -2,
-            Sheevra => -3,
+            Veela => 158,
+            Sheevra => 154,
 
-            Blainn => -4,
-            Huergar => -5,
+            Blainn => 154,
+            Huergar => 150,
 
-            Thursar => 3,
+            Thursar => 178,
         }
     }
 
@@ -196,19 +203,19 @@ impl Race {
     pub fn max_height(&self) -> i32 {
         use Race::*;
         match self {
-            Tindremen => 0,
-            Sidoian => -1,
-            Sarducaan => -4,
-            Khurite => -5,
-            Kallard => 2,
+            Tindremen => 199,
+            Sidoian => 195,
+            Sarducaan => 183,
+            Khurite => 179,
+            Kallard => 207,
 
-            Veela => -5,
-            Sheevra => -6,
+            Veela => 179,
+            Sheevra => 175,
 
-            Blainn => -7,
-            Huergar => -8,
+            Blainn => 171,
+            Huergar => 167,
 
-            Thursar => 4,
+            Thursar => 215,
         }
     }
 
