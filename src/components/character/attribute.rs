@@ -18,11 +18,11 @@ impl AttributeFrame {
 impl PropComponent for AttributeFrame {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
         let modifier = item.attribute_modifier(self.attribute);
         let raw_attribute = item.attributes[self.attribute];
         let attribute_min = item.attribute_min(self.attribute);
-        let mut frame = mymo_frame_defaults();
+        let mut container = mymo_frame_defaults();
 
         let attribute_cap = item.attribute_cap(self.attribute);
         let slider_frame = SliderFrame::new()
@@ -40,20 +40,20 @@ impl PropComponent for AttributeFrame {
             .max(140);
 
         if item.attributes[self.attribute] > attribute_cap {
-            frame = frame.fill(COLORS.get().frame_color_impossible)
+            container = container.fill(COLORS.get().frame_color_impossible)
         }
 
         if modifier < 0 
             && raw_attribute + modifier < attribute_min + 1 
             && raw_attribute > attribute_min 
         {
-            frame = frame.fill(COLORS.get().frame_color_ineffective)
+            container = container.fill(COLORS.get().frame_color_ineffective)
         }
 
-        frame.show(ui, |ui| {
+        container.show(ui, |ui| {
             slider_frame
                 .show_value(true)
-                .add(ui, &mut item.attributes[self.attribute]);     
+                .add(frame, ui, &mut item.attributes[self.attribute]);     
         });
         
     }

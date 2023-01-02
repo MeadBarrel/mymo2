@@ -8,13 +8,13 @@ use eframe::egui::Ui;
 
 pub trait Component {
     #[allow(unused)]
-    fn add(&mut self, ui: &mut Ui);
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui);
 }
 
 pub trait PropComponent {
     type Item;
 
     #[allow(unused)]
-    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item);
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item);
 
 }

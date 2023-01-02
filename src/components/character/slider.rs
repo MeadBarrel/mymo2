@@ -2,7 +2,7 @@ use std::marker::PhantomData;
 
 use eframe::egui::{Ui, emath::Numeric, Align, Layout, Slider};
 use mymo::model::Character;
-use super::frame;
+use super::box_container;
 
 use crate::components::PropComponent;
 
@@ -82,7 +82,7 @@ impl<Num> PropComponent for SliderFrame<Num>
 {
     type Item = Num;
 
-    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
         ui.vertical(|ui| {
             ui.set_width(ui.available_width());
         

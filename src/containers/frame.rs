@@ -10,7 +10,7 @@ pub fn mymo_frame_defaults() -> Frame {
         .rounding(4.0)
 }
 
-pub fn frame<R>(ui: &mut Ui, content: impl FnOnce(&mut Ui) -> R) -> InnerResponse<R> {
+pub fn box_container<R>(ui: &mut Ui, content: impl FnOnce(&mut Ui) -> R) -> InnerResponse<R> {
     mymo_frame_defaults()
         .show(ui, |ui| {
             ui.set_width(ui.available_width());

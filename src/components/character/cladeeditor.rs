@@ -10,7 +10,7 @@ pub struct CladeEditor;
 impl PropComponent for CladeEditor {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut egui::Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut egui::Ui, item: &mut Self::Item) {
         ui.horizontal(|ui| {
             ui.label("Clade: ");
             ui.menu_button(item.clade.name(), |ui| {

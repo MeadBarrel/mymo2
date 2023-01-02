@@ -7,7 +7,7 @@ pub struct WeightSlider;
 impl PropComponent for WeightSlider {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
         let weight_class = item.weight_class();
         let mut slider_frame = SliderFrame::new()
             .label("Weight")
@@ -16,6 +16,6 @@ impl PropComponent for WeightSlider {
             .min(50)
             .max(200);
         
-        slider_frame.add(ui, &mut item.weight_percent);        
+        slider_frame.add(frame, ui, &mut item.weight_percent);        
     }
 }

@@ -10,8 +10,8 @@ pub struct HeightSlider;
 impl PropComponent for HeightSlider {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
-        let mut frame = mymo_frame_defaults();
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
+        let mut container = mymo_frame_defaults();
         let min_height = item.min_height();
         let max_height = item.max_height();
         let mut slider_frame = SliderFrame::new()
@@ -24,11 +24,11 @@ impl PropComponent for HeightSlider {
             .max(230);
 
         if item.height < min_height || item.height > max_height {
-            frame = frame.fill(COLORS.get().frame_color_impossible)
+            container = container.fill(COLORS.get().frame_color_impossible)
         }
 
-        frame.show(ui, |ui| {
-            slider_frame.add(ui, &mut item.height)
+        container.show(ui, |ui| {
+            slider_frame.add(frame, ui, &mut item.height)
         });
     }
 }

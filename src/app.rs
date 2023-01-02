@@ -17,7 +17,7 @@ impl App {
 }
 
 impl eframe::App for App {
-    fn update(&mut self, ctx: &Context, _: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &Context, frame: &mut eframe::Frame) {
 
         let mut style = Style::default();
         use TextStyle::*;
@@ -36,7 +36,7 @@ impl eframe::App for App {
         CentralPanel::default().show(ctx, |ui| {
             PropWrapper::new(
                 CharacterEditor::new(self.id.derive("character_editor")), self.character.clone()
-            ).add(ui);
+            ).add(frame, ui);
         });
     }
 }

@@ -15,7 +15,7 @@ use crate::id::SuffixedId;
 use self::cladeeditor::CladeEditor;
 
 use super::PropComponent;
-use crate::containers::frame;
+use crate::containers::box_container;
 use eframe::egui::{Ui, ScrollArea, SidePanel, CentralPanel};
 
 #[derive(Debug)]
@@ -38,7 +38,7 @@ impl CharacterEditor {
 impl PropComponent for CharacterEditor {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
         let side_panel_width = ui.available_width() * 0.35;
         ScrollArea::new([false, true]).show(ui, |ui| {
             SidePanel::left(self.id.derive("side_panel"))
@@ -48,15 +48,15 @@ impl PropComponent for CharacterEditor {
                 .show_inside(ui, |ui| {
                     ui.vertical(|ui| {
                         ui.add_space(5.);
-                        frame(ui, |ui| {
-                            self.clade_editor.add(ui, item)
+                        box_container(ui, |ui| {
+                            self.clade_editor.add(frame, ui, item)
                         });
-                        frame(ui, |ui| {
-                            self.parents_editor.add(ui, item)
+                        box_container(ui, |ui| {
+                            self.parents_editor.add(frame, ui, item)
                         });
-                        heightslider::HeightSlider.add(ui, item);
-                        frame(ui, |ui| {
-                            weightslider::WeightSlider.add(ui, item)
+                        heightslider::HeightSlider.add(frame, ui, item);
+                        box_container(ui, |ui| {
+                            weightslider::WeightSlider.add(frame, ui, item)
                         });
                     });
                 });
@@ -75,7 +75,7 @@ impl PropComponent for CharacterEditor {
                 .show_inside(ui, |ui| {
                     ui.scope(|ui| {                        
                         Attribute::iter().for_each(|attribute| {
-                            attribute::AttributeFrame::new(attribute).add(ui, item)
+                            attribute::AttributeFrame::new(attribute).add(frame, ui, item)
                         })    
                     })
                 });

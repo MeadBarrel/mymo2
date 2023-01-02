@@ -23,7 +23,7 @@ impl RaceSelectButton {
 impl PropComponent for RaceSelectButton {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut Ui, item: &mut Self::Item) {
         use mymo::model::avail_parents;
 
         let popup_id = self.id.derive("_popup").id();

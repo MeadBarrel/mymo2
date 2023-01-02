@@ -23,13 +23,13 @@ impl ParentsEditor {
 impl PropComponent for ParentsEditor {
     type Item = Character;
 
-    fn add(&mut self, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut eframe::egui::Ui, item: &mut Self::Item) {
         ui.vertical(|ui| {
             ui.horizontal(|ui| {
                 ui.heading("Race:");
                 self.parent_buttons.iter_mut().for_each(|parent_button| {
                     ui.add_space(10.);
-                    parent_button.add(ui, item)
+                    parent_button.add(frame, ui, item)
                 });
             })
         });        

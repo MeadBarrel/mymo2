@@ -21,9 +21,9 @@ impl<T, C> Component for PropWrapper<T, C>
         T: Default,
         C: PropComponent<Item = T>,
 {
-    fn add(&mut self, ui: &mut eframe::egui::Ui) {
+    fn add(&mut self, frame: &mut eframe::Frame, ui: &mut eframe::egui::Ui) {
         let mut item = self.value.take();
-        self.component.add(ui, &mut item);
+        self.component.add(frame, ui, &mut item);
         self.value.set(item);
     }
 }
