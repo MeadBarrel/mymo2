@@ -1,18 +1,18 @@
-mod raceselect;
+mod race;
 mod attribute;
 mod parents;
-mod cladeeditor;
+mod clade;
 mod slider;
-mod heightslider;
-mod weightslider;
-mod ageslider;
+mod heigh;
+mod weigh;
+mod age;
 
 use mymo::model::Character;
 use mymo::model::Attribute;
 use mymo::strum::IntoEnumIterator;
 use crate::id::SuffixedId;
 
-use self::cladeeditor::CladeEditor;
+use self::clade::CladeEditor;
 
 use super::PropComponent;
 use crate::containers::box_container;
@@ -22,7 +22,7 @@ use eframe::egui::{Ui, ScrollArea};
 #[derive(Debug)]
 pub struct CharacterEditor {
     id: SuffixedId,
-    clade_editor: cladeeditor::CladeEditor,
+    clade_editor: clade::CladeEditor,
     parents_editor: parents::ParentsEditor,
     left_min_size: f32,
     central_min_size: f32,
@@ -103,10 +103,10 @@ impl CharacterEditor {
         box_container(ui, |ui| {
             self.parents_editor.add(frame, ui, item)
         });
-        ageslider::AgeSlider.add(frame, ui, item);
-        heightslider::HeightSlider.add(frame, ui, item);
+        age::AgeSlider.add(frame, ui, item);
+        heigh::HeightSlider.add(frame, ui, item);
         box_container(ui, |ui| {
-            weightslider::WeightSlider.add(frame, ui, item)
+            weigh::WeightSlider.add(frame, ui, item)
         });        
     }
 

@@ -2,7 +2,7 @@ use crate::components::PropComponent;
 use crate::id::SuffixedId;
 use mymo::model::{Parent, Character};
 use mymo::strum::IntoEnumIterator;
-use super::raceselect::RaceSelectButton;
+use super::race::RaceSelectButton;
 
 #[derive(Debug)]
 pub(super) struct ParentsEditor {
