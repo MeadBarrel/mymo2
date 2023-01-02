@@ -63,7 +63,7 @@ impl Clade {
                 (First, Blainn), (Second, Blainn), (Third, Blainn), (Fourth, Blainn)]
                 .into_iter().collect(),
             Clade::Thursar => vec![
-                (First, Thursar), (Second, Thursar), (Third, Tindremen), (Fourth, Tindremen)]
+                (First, Risar), (Second, Risar), (Third, Tindremen), (Fourth, Tindremen)]
                 .into_iter().collect()
         }
     }
@@ -89,7 +89,7 @@ pub fn avail_parents(clade: Clade, parent: Parent) -> Vec<Race> {
             Huergar,
         ],
         Clade::Thursar => match parent {
-            Parent::First | Parent::Second => vec![Thursar],
+            Parent::First | Parent::Second => vec![Risar],
             Parent::Third | Parent::Fourth => vec![
                 Tindremen,
                 Sidoian,

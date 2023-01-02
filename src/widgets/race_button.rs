@@ -34,6 +34,6 @@ fn race_image_name(race: Race) -> String {
         Sheevra => "race.sheevra.png",
         Blainn => "race.blainn.png",
         Huergar => "race.huergar.png",
-        Thursar => "race.thursar.png",
+        Risar => "race.thursar.png",
     }.to_string()
 }

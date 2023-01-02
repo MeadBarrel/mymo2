@@ -20,7 +20,7 @@ pub enum Race {
     Huergar,
 
     // Thursar
-    Thursar,
+    Risar,
 }
 
 
@@ -100,7 +100,7 @@ impl Race {
                 Psyche => 89
             },
 
-            Thursar => match attribute {
+            Risar => match attribute {
                 Strength => 108,
                 Dexterity => 82,
                 Constitution => 106,
@@ -127,7 +127,7 @@ impl Race {
             Blainn => 154,
             Huergar => 150,
 
-            Thursar => 178,
+            Risar => 178,
         }
     }
 
@@ -148,7 +148,7 @@ impl Race {
             Blainn => 171,
             Huergar => 167,
 
-            Thursar => 215,
+            Risar => 215,
         }
     }
 
@@ -167,7 +167,7 @@ impl Race {
             Blainn => -13,
             Huergar => -13,
 
-            Thursar => -14,
+            Risar => -14,
         }
     }
 }
