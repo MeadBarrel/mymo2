@@ -3,6 +3,8 @@ use eframe::epaint::Color32;
 use state::Storage;
 use egui_extras::RetainedImage;
 use error_stack::{ResultExt, Result, IntoReport};
+use mymo::model::Skill;
+use mymo::indexmap::IndexMap;
 
 pub struct Colors {
     pub frame_color_std: Color32,
@@ -12,6 +14,7 @@ pub struct Colors {
 
 pub static IMAGES: Storage<HashMap<String, RetainedImage>> = Storage::new();
 pub static COLORS: Storage<Colors> = Storage::new();
+pub static SKILLS: Storage<IndexMap<String, Skill>> = Storage::new();
 
 impl Default for Colors {
     fn default() -> Self {
