@@ -1483,6 +1483,8 @@ dependencies = [
  "mymo",
  "state",
  "thiserror",
+ "tracing",
+ "tracing-subscriber",
  "uuid",
 ]
 

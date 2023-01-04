@@ -1,5 +1,7 @@
+use std::collections::HashMap;
+
 use enum_map::EnumMap;
-use super::{attribute::Attribute, Race, Parent, Clade, Sex, WeightClass
+use super::{attribute::Attribute, Race, Parent, Clade, Sex, WeightClass, Skill
 };
 use serde::{Serialize, Deserialize};
 
@@ -12,6 +14,7 @@ pub struct Character {
     pub age: i32,
     pub parents: EnumMap<Parent, Race>,
     pub attributes: EnumMap<Attribute, i32>,
+    pub skills: HashMap<String, Skill>,
 }
 
 impl Default for Character {
@@ -24,6 +27,7 @@ impl Default for Character {
             age: 18,
             parents: Default::default(),
             attributes: Default::default(),
+            skills: Default::default(),
         }
     }
 }

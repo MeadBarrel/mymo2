@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use super::attribute::Attribute;
 
-#[derive(Debug, Clone, Serialize, Deserialize, Copy, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Copy, Default, PartialEq, Eq)]
 pub enum SkillTree {
     #[default]
     Action,
@@ -58,5 +58,9 @@ impl Skill {
     pub fn primary(mut self, primary: bool) -> Self {
         self.is_primary = primary;
         self
+    }
+
+    pub fn has_parent(&self, parent_name: &str) -> bool {
+        self.parents.iter().any(|x| x.0 == parent_name)
     }
 }

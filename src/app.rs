@@ -39,6 +39,8 @@ impl eframe::App for App {
             (Button, FontId::new(18.0, Proportional)),
             (Small, FontId::new(14.0, Proportional)),
             (Name("Huge".into()), FontId::new(32.0, Proportional)),
+            (Name("Large".into()), FontId::new(24.0, Proportional)),
+            (Name("Tiny".into()), FontId::new(8.0, Proportional)),
         ].into();
 
         ctx.set_style(style);
